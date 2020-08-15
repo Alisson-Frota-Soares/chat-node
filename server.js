@@ -25,6 +25,8 @@ app.get("/", (req, res) => {
 
 
 
+let messages = []
+
 
 
 let server = app.listen(3000, () => {
@@ -36,8 +38,10 @@ let io = socket(server)
 io.on("connection", (socket) => {
     console.log("nova conexao "+socket.id)
 
+    socket.emit("previousMessages", messages)
+
     socket.on("message", (data)=> {
-        
+        messages.push(data)
         socket.broadcast.emit("receivedMessage", data)
 
     })

@@ -18,12 +18,12 @@
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            width: 50vw;
+            width: 60vw;
             justify-content: center;
         }
 
         input {
-            margin: 10px;
+            margin: 10px 0;
             padding: 10px;
         }
 
@@ -39,7 +39,7 @@
             margin: 0 auto;
             border: 1px solid #555;
             border-radius: 3px;
-            width: 80vw;
+            width: 60vw;
             height: 50vh;
             overflow: auto;
         }
@@ -91,6 +91,14 @@
 
         socket.on("receivedMessage", (data)=> {
             addMessage(data)
+        })
+
+        socket.on("previousMessages", (messages)=> {
+            
+            messages.forEach(element => {
+                addMessage(element)
+            });
+
         })
 
 
